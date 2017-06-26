@@ -30,4 +30,9 @@ echo "函数外部全局变量 x 值为：$x";
 //2. print和echo
 //echo - 可以输出一个或多个字符串
 //print - 只允许输出一个字符串，返回值总为 1
+
+//添加动态内容 - . 连接操作符，可以写在一行中
+echo "<p>Order processed at ".date('H:i, jS F Y')."</p>"; //H小时，i分钟，j日期，S顺序后缀（th），F月份全称
+	//output like : Order processed at 16:17, 26th June 2017
+	
 ?>
