@@ -1,6 +1,6 @@
 <?php
 //1. 变量 - 区分大小写
-echo '<h2>变量</h2>';
+echo '<h3>1.变量</h3>';
 $x = 5; //全局变量 -PHP 将所有全局变量存储在一个名为 $GLOBALS[index] 的数组中。 index 保存变量的名称。这个数组可以在函数内部访问，也可以直接用来更新全局变量。
 
 function myTest() //参数作用域
@@ -34,7 +34,7 @@ echo "函数外部全局变量 x 值为：$x";
 //echo - 可以输出一个或多个字符串
 //print - 只允许输出一个字符串，返回值总为 1
 
-echo '<h2>数据类型</h2>';
+echo '<h3>2.数据类型</h3>';
 //3. 数据类型 - String（字符串）, Integer（整型）, Float（浮点型）, Boolean（布尔型）, Array（数组）, Object（对象）, NULL（空值）。
 //字符串
 $str1 = 'str1';
@@ -101,6 +101,29 @@ print_vars($herbie);
 echo "<br>";
 $x=null;
 var_dump($x); #ouput: NULL
+
+//3. 常量 - 常量值被定义后，在脚本的其他任何地方都不能被改变，在整个脚本中都可以使用
+echo '<h3>3.常量</h3>';
+//设置语法：bool define ( string $name , mixed $value [, bool $case_insensitive = false ] )
+//name：必选参数，常量名称，即标志符。
+//value：必选参数，常量的值。
+//case_insensitive ：可选参数，如果设置为 TRUE，该常量则大小写不敏感。默认是大小写敏感的。
+define("GREETING","欢迎访问");
+echo GREETING;
+echo '<br>';
+// echo greeting; //Use of undefined constant greeting
+
+echo '<h3>4.字符串</h3>';
+//并置运算符 (.) 用于把两个字符串值连接起来。
+$txt1 = "Hello world!";
+$txt2 = "What a nice day!";
+echo $txt1 . ' ' . $txt2; //output: Hello world! What a nice day!
+echo "<br>";
+echo strlen($txt1); //12
+//strpos() 函数用于在字符串内查找一个字符或一段指定的文本。
+//如果在字符串中找到匹配，该函数会返回第一个匹配的字符位置。如果未找到匹配，则返回 FALSE。
+echo "<br>";
+echo strpos($txt1, "world"); //6
 
 
 //添加动态内容 - . 连接操作符，可以写在一行中
