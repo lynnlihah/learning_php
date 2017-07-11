@@ -112,12 +112,56 @@ define("GREETING","欢迎访问");
 echo GREETING;
 echo '<br>';
 // echo greeting; //Use of undefined constant greeting
+//系统常量
+//__FILE__ :php程序文件名。它可以帮助我们获取当前文件在服务器的物理位置
+//__LINE__ :PHP程序文件行数。
+//PHP_VERSION:当前解析器的版本号
+//PHP_OS：执行当前PHP版本的操作系统名称。
+echo __FILE__;
+echo "<br />";
+echo __LINE__;
+echo "<br />";
+echo PHP_VERSION;
+echo "<br />";
+echo PHP_OS;
+echo "<br />";
+//用constant调用常量 - 也可以知己constant("PI") 和 PI 效果一样，没试
+$p="";
+//定义圆周率的两种取值
+define("PI1",3.14);
+define("PI2",3.142);
+//定义值的精度
+$height = "中";
+//根据精度返回常量名，将常量变成了一个可变的常量
+if($height == "中"){
+    $p = "PI1";
+}else if($height == "低"){
+	$p = "PI2";
+}
+$r=1;
+$area=constant($p)*$r*$r;
+echo $area;
+
+echo "<br>";
+//defined判断常量是否已经被定义
+define("PI1",3.14);
+$p = "PI1";
+$is1 = defined($p);
+$is2 = defined("PI2");
+var_dump($is1);
+var_dump($is2);
 
 echo '<h3>4.字符串</h3>';
 //并置运算符 (.) 用于把两个字符串值连接起来。
 $txt1 = "Hello world!";
 $txt2 = "What a nice day!";
 echo $txt1 . ' ' . $txt2; //output: Hello world! What a nice day!
+
+echo '<br>';
+
+$love = "I love you!"; 
+$string1 = "aaa,$love";
+echo $string1;
 echo "<br>";
 echo strlen($txt1); //12
 //strpos() 函数用于在字符串内查找一个字符或一段指定的文本。
@@ -125,9 +169,47 @@ echo strlen($txt1); //12
 echo "<br>";
 echo strpos($txt1, "world"); //6
 
+//长字符串
+echo "<br>";
+$string=<<<GOD
+我有一只小毛驴，我从来也不骑。
+有一天我心血来潮，骑着去赶集。
+我手里拿着小皮鞭，我心里正得意。
+不知怎么哗啦啦啦啦，我摔了一身泥.
+GOD;
+echo "$string";
 
 //添加动态内容 - . 连接操作符，可以写在一行中
 echo "<p>Order processed at ".date('H:i, jS F Y')."</p>"; //H小时，i分钟，j日期，S顺序后缀（th），F月份全称
 	//output like : Order processed at 16:17, 26th June 2017
-	
+
+//资源类型：
+//首先采用“fopen”函数打开文件，得到返回值的就是资源类型。
+/*$file_handle = fopen("/data/webroot/resource/php/f.txt","r");
+if ($file_handle){
+    //接着采用while循环（后面语言结构语句中的循环结构会详细介绍）一行行地读取文件，然后输出每行的文字
+    while (!feof($file_handle)) { //判断是否到最后一行
+        $line = fgets($file_handle); //读取一行文本
+        echo $line; //输出一行文本
+        echo "<br />"; //换行
+    }
+}
+fclose($file_handle);//关闭文件
+*/	
+//$file=fopen("f.txt","r");   //打开文件
+//$con=mysql_connect("localhost","root","root");  //连接数据库
+//$img=imagecreate(100,100);//图形画布
+
+//空类型的三种情况
+ echo '<br>';
+ error_reporting(0); //禁止显示PHP警告提示
+ $var;
+ var_dump($var);
+ $var1=null;
+ var_dump($var1);
+ $var2=NULL;
+ var_dump( $var2);
+ $var3 = "节日快乐！";
+ unset($var3);//释放var3
+ var_dump($var3);
 ?>
