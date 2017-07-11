@@ -183,6 +183,15 @@ echo "$string";
 echo "<p>Order processed at ".date('H:i, jS F Y')."</p>"; //H小时，i分钟，j日期，S顺序后缀（th），F月份全称
 	//output like : Order processed at 16:17, 26th June 2017
 
+$b = "东边日出西边雨";	
+$b .= ",道是无晴却有晴";
+
+$c = "东边日出西边雨";	
+$c = $c.",道是无晴却有晴";
+
+echo  $b."<br />";
+echo  $c."<br />";
+
 //资源类型：
 //首先采用“fopen”函数打开文件，得到返回值的就是资源类型。
 /*$file_handle = fopen("/data/webroot/resource/php/f.txt","r");
