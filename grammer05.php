@@ -115,4 +115,77 @@ class Truck extends Car2{
 
 $truck = new Truck();
 
+//重载 ? 动态创建属性，或者调用不存在的类方法
+//属性的重载通过__set，__get，__isset，__unset来分别实现对不存在属性的赋值、读取、
+//判断属性是否设置、销毁属性。
+//方法的重载通过__call来实现，当调用不存在的方法的时候，将会转为参数调用__call方法，
+//当调用不存在的静态方法时会使用__callStatic重载。
+echo "<br>";
+echo "car5";
+echo "<br>";
+//__call
+class Car5 {
+    public $speed = 10;
+
+    //在这里使用重载实现speedDown方法
+    public function __call($name, $args){
+        if($name=='speedDown'){
+            $this->speed -= 10;
+        }
+    }
+    
+}
+$car5 = new Car5();
+$car5->speedDown(); //调用不存在的speedDown方法
+echo $car5->speed;
+//属性重载
+class Car6{
+	private $ary = array();
+	public function __set($key, $val){
+		$this->ary[$key] = $val;
+	}
+
+	public function __get($key){
+		if(isset($this->ary[$key])){
+			return $this->ary[$key];
+		}
+		return null;
+	}
+	public function __isset($key){
+		if(isset($this->ary[$key])){
+			return true;
+		}
+		return false;
+	}
+	public function __unset($key){
+		unset($this->ary[$key]);
+	}
+}
+$car6 = new Car6();
+$car6->name = '汽车'; //name属性动态创建并赋值
+echo '<br>';
+echo $car6->name;
+
+//判断对象 == === 
+//复制对象
+//序列化
+echo '<br>';
+class Car7 {
+    public $name = 'car';
+    
+    public function __clone() {
+        $obj = new Car7();
+        $obj->name = $this->name;
+    }
+}
+$a = new Car7();
+$a->name = 'new car';
+$b = clone $a;
+if ($a == $b) echo '==';   //true
+if ($a === $b) echo '==='; //false
+
+$str = serialize($a); //对象序列化成字符串
+echo $str.'<br>';
+$c = unserialize($str); //反序列化为对象
+var_dump($c);
 ?>
