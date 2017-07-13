@@ -43,4 +43,18 @@ echo str_replace("Chian","China",$str)."<br>"; //output:I Love China
 //格式化字符串 - sprintf 
 $str = '100.1';
 echo sprintf('%0.3f',$str)."<br>"; //显示到小数点后三位，100.100
+
+//合并分隔字符串
+//合并字符串 - implode(分隔符[可选], 数组)
+$arr = array('Hello','World!');
+$result = implode(' ', $arr);
+print_r($result."<br>"); // Hello World!
+//分隔字符串 - explode(分隔符[可选], 字符串)
+$str = 'sun-moon-star';
+$reval = explode('-',$str);
+print_r($reval); //Array ( [0] => sun [1] => moon [2] => star ) 
+
+//字符串转义
+$str = "what's this?";
+echo "<br>".addslashes($str)."<br>"; //what\'s this?
 ?>
